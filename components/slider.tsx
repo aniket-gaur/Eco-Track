@@ -40,7 +40,7 @@ export default function PhotoSection() {
     }, []);
 
     return (
-        <section className="bg-gray-500 py-10 overflow-hidden">
+        <section className="bg-[#f5e7d3] py-10 overflow-hidden">
             <div ref={sliderRef} className="flex space-x-6 px-4 overflow-x-auto scrollbar-hide">
                 {photos.concat(photos).map((photo, index) => (
                     <motion.div key={index} className="flex-shrink-0">
