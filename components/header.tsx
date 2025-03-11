@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { Menu } from 'lucide-react';
+import CustomButton from './dashboardbut';
 
 export default function Navbar() {
     return (
@@ -29,10 +30,7 @@ export default function Navbar() {
                 </div>
 
                 {/* Button */}
-                <Link href="/explore" className="hidden md:block bg-green-700 text-white px-4 py-2 rounded-full hover:bg-green-800">
-                    Explore
-                </Link>
-
+                <CustomButton />
                 {/* Mobile Menu Button */}
                 <button className="md:hidden text-gray-500">
                     <Menu size={24} />

@@ -22,7 +22,7 @@ export default async function Dashboard() {
                 </div>
                 <nav className="space-y-4">
                     <a href="#" className="flex items-center gap-2 p-2 hover:bg-[#DCC7AA] rounded text-[#1B5E20]"><User size={18} /> Profile</a>
-                    <a href="#" className="flex items-center gap-2 p-2 hover:bg-[#DCC7AA] rounded text-[#1B5E20]"><Inbox size={18} /> Inbox</a>
+                    <a href="/admin" className="flex items-center gap-2 p-2 hover:bg-[#DCC7AA] rounded text-[#1B5E20]"><Inbox size={18} /> Admin Pannel</a>
                     <a href="#" className="flex items-center gap-2 p-2 hover:bg-[#DCC7AA] rounded text-[#1B5E20]"><CreditCard size={18} /> Billings</a>
                     <a href="#" className="flex items-center gap-2 p-2 hover:bg-[#DCC7AA] rounded text-[#1B5E20]"><FileText size={18} /> Logs</a>
                     <a href="#" className="flex items-center gap-2 p-2 hover:bg-[#DCC7AA] rounded text-[#1B5E20]"><Bell size={18} /> Notifications</a>
