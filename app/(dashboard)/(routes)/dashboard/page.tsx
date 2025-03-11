@@ -5,6 +5,8 @@ import { currentUser, EmailAddress } from "@clerk/nextjs/server";
 
 export default async function Dashboard() {
     const user = await currentUser();
+    console.log(user);
+
     return (
         <div className="flex h-screen bg-[#FAF3E0]">
             {/* Sidebar */}
