@@ -9,7 +9,7 @@ export default function DashLayout({
         <div className=" h-full relative">
             <div className="hidden h-full md:flex md:flex-col  md:w-72 md:fixed md:inset-y-0 z-[80] bg-gradient-to-br from-black via-[#07030a] to-[#09000e] text-[#E0E0E0]">
                 <div>
-
+                    <h1>page</h1>
                 </div>
             </div>
             <main className="md:pl-72">
