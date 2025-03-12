@@ -10,7 +10,7 @@ export default function Navbar() {
             <div className="container mx-auto flex justify-between items-center">
                 {/* Logo */}
                 <Link href="/" className="flex items-center text-black font-semibold text-lg">
-                    <span className="mr-2">⚙</span> EcoTidy
+                    <span className="mr-2">⚙</span> EcoTrack
                 </Link>
 
                 <div className="flex items-center space-x-6">

@@ -51,7 +51,7 @@ export default function HeroSection() {
                     <div className="flex flex-row gap-3 mt-4">
                         <Link href="/sign-in">
 
-                            <Button size="lg" className="gap-4 bg-white hover:bg-grey-400" variant="outline">
+                            <Button size="lg" className="gap-4 bg-[#f5e7d3] border-1 border-black hover:bg-[#e9d2b2] cursor-pointer" variant="outline">
                                 Login
                             </Button>
 
@@ -59,7 +59,7 @@ export default function HeroSection() {
                         </Link>
                         <Link href="/sign-up">
 
-                            <Button size="lg" className="gap-4 bg-green-700 text-white hover:bg-green-800 cursor:pointer">
+                            <Button size="lg" className="gap-4 bg-green-700 text-white hover:bg-green-800 cursor-pointer">
                                 Sign up here <MoveRight className="w-4 h-4" />
                             </Button>
 

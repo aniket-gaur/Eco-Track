@@ -1,11 +1,11 @@
 
-// import { redirect } from 'next/navigation'
+import { redirect } from 'next/navigation'
 
-// export default async function AdminDashboard() {
-//   const isAdmin = await checkRole('admin')
-//   if (!isAdmin) {
-//     redirect('/')
-//   }
+export default async function AdminDashboard() {
+    return (
+        <h1>This is profile page</h1>
+    )
 
-//   return <p>This is the protected admin dashboard</p>
-// }
+
+
+}

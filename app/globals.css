@@ -9,7 +9,7 @@
   --font-mono: var(--font-geist-mono);
 }
 body{
-  background:bg-[#fdf9f0];
+  background:rgb(71, 129, 89);
 }
 
 :root {
