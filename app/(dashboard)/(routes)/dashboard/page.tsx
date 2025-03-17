@@ -12,12 +12,12 @@ export default async function ProfilePage() {
         role: `${user?.role || "User"}`,
 
         email: `${user?.primaryEmailAddress?.emailAddress || "user@example.com"}`,
-        phone: "(+62) 821 2554-5846",
+        phone: `${user?.primaryPhoneNumber?.phoneNumber}`,
         dob: "12-10-1990",
         firstName: `${user?.firstName || "User"}`,
         lastName: ` ${user?.lastName || ""}`,
         country: "United Kingdom",
-        city: "Leeds, East London",
+        city: `${user?.publicMetadata || ""}`,
         postalCode: "ERT 1254",
         profileImage: `${user?.imageUrl}`,
 

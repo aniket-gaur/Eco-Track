@@ -20,7 +20,7 @@ export default async function SidebarCom() {
 
                 {/* Settings Section */}
                 <h3 className="text-sm text-white mt-4">Settings</h3>
-                <NavItem href="#" icon={<Settings size={18} />} text="General Settings" />
+                <NavItem href="/addressUpdate" icon={<Settings size={18} />} text="Update Address" />
                 <NavItem href="/" icon={<LogOut size={18} />} text="Logout" />
             </nav>
         </aside>
