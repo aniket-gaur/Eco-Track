@@ -1,5 +1,5 @@
 export default function AdminPage() {
     return (
-        <h1>This is Admin page</h1>
+        <h1>This is  admin dashboard</h1>
     )
 }
