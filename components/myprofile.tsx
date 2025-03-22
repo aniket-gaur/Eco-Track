@@ -4,6 +4,8 @@ import { useClerk } from "@clerk/nextjs";
 import { CheckCircle, Pencil } from "lucide-react";
 import { Button } from "./ui/button";
 
+import Link from "next/link";
+
 interface UserProfileProps {
     user: {
         name: string;
@@ -19,6 +21,7 @@ interface UserProfileProps {
         postalCode: string;
         profileImage: string;
         isVerified: boolean;
+        houseNo: string;
     };
 }
 
@@ -71,11 +74,17 @@ export default function MyProfile({ user }: UserProfileProps) {
             <div className="bg-white p-6 mt-6 rounded-lg shadow">
                 <div className="flex justify-between items-center mb-4 border-b pb-2">
                     <h3 className="text-lg font-semibold text-gray-800">Address</h3>
-                    <Button className="text-orange-500 hover:text-orange-700">
-                        <Pencil size={18} />
-                    </Button>
+
+                    <Link href="/data">
+                        <Button className="text-orange-500 hover:text-orange-700">
+                            <Pencil size={18} />
+                        </Button>
+
+                    </Link>
+
                 </div>
                 <div className="grid grid-cols-2 gap-6 text-sm">
+                    <p><strong className="text-gray-700">House No:-:</strong> {user.houseNo}</p>
                     <p><strong className="text-gray-700">Country:</strong> {user.country}</p>
                     <p><strong className="text-gray-700">City:</strong> {user.city}</p>
                     <p><strong className="text-gray-700">Postal Code:</strong> {user.postalCode}</p>

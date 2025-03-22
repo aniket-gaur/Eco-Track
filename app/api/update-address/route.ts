@@ -1,7 +1,7 @@
 import { clerkClient } from "@clerk/nextjs/server";
 import { currentUser } from "@clerk/nextjs/server";
 
-export async function POST(req) {
+export async function POST(req:any) {
   const user = await currentUser();
   const client = await clerkClient();
   console.log(user);
@@ -13,9 +13,9 @@ export async function POST(req) {
   }
 
   const userId = user.id;
-  const { country, city, pincode } = await req.json();
+  const { country , city, pincode, house } = await req.json();
 
-  if (!country || !city || !pincode) {
+  if (!country || !city || !pincode || !house) {
     return new Response(JSON.stringify({ error: "All fields are required" }), {
       status: 400,
     });
@@ -24,10 +24,10 @@ export async function POST(req) {
   // ✅ Fetch existing metadata
   let existingMetadata = user.publicMetadata || {};
   console.log(clerkClient);
-  console.log(clerkClient.users);
+ 
 
   // ✅ Append the new address data directly to publicMetadata
-  existingMetadata.address = { country, city, pincode };
+  existingMetadata.address = { country, city, pincode, house };
 
   // ✅ Update Clerk publicMetadata
   await client.users.updateUserMetadata(userId, {

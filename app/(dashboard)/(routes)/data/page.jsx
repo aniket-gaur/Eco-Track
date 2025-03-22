@@ -6,6 +6,7 @@ export default function AddressUpdater() {
     country: "",
     city: "",
     pincode: "",
+    house: "",
   });
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState(address);
@@ -19,8 +20,12 @@ export default function AddressUpdater() {
         if (!res.ok) throw new Error("Failed to fetch address");
 
         const data = await res.json();
-        setAddress(data?.address || { country: "", city: "", pincode: "" });
-        setFormData(data?.address || { country: "", city: "", pincode: "" });
+        setAddress(
+          data?.address || { house: "", country: "", city: "", pincode: "" }
+        );
+        setFormData(
+          data?.address || { house: "", country: "", city: "", pincode: "" }
+        );
       } catch (error) {
         console.error("Error fetching metadata:", error);
       }
@@ -60,6 +65,14 @@ export default function AddressUpdater() {
       <h2 className="text-lg font-bold mb-2">Address</h2>
       {isEditing ? (
         <div>
+          <label className="block">House No:</label>
+          <input
+            type="text"
+            name="house"
+            value={formData.house}
+            onChange={handleChange}
+            className="border p-1 rounded w-full"
+          />
           <label className="block">Country:</label>
           <input
             type="text"
@@ -94,6 +107,9 @@ export default function AddressUpdater() {
         </div>
       ) : (
         <div>
+          <p>
+            <strong>House No:</strong> {address.house || "N/A"}
+          </p>
           <p>
             <strong>Country:</strong> {address.country || "N/A"}
           </p>

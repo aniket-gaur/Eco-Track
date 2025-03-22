@@ -1,14 +1,28 @@
 import { currentUser } from "@clerk/nextjs/server";
+import { Interface } from "readline";
 
-export async function GET() {
+ type address = {
+  country: string;
+  city: string;
+  pincode: string;
+  house: string;
+};
+
+export async function GET(): Promise<Response> {
   const user = await currentUser();
-  console.log(user.id);
+
+  if (!user) {
+    return new Response(JSON.stringify({ error: "Unauthorized" }), {
+      status: 401,
+    });
+  }
 
   try {
-    let address = user.publicMetadata?.address || {
+    const address: address = (user.publicMetadata?.address as address) || {
       country: "",
       city: "",
       pincode: "",
+      house:""
     };
 
     return new Response(JSON.stringify({ address }), { status: 200 });

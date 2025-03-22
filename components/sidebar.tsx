@@ -15,8 +15,9 @@ export default async function SidebarCom() {
                 <NavItem href="/dashboard" icon={<User size={18} />} text="Profile" />
                 <NavItem href="/complaint" icon={<Inbox size={18} />} text="Complaints" />
                 <NavItem href="#" icon={<CreditCard size={18} />} text="Billings" />
-                <NavItem href="/contact" icon={<FileText size={18} />} text="Contact" />
+                <NavItem href="/contacts" icon={<FileText size={18} />} text="Contact" />
                 <NavItem href="#" icon={<Bell size={18} />} text="Notifications" />
+
 
                 {/* Settings Section */}
                 <h3 className="text-sm text-white mt-4">Settings</h3>
