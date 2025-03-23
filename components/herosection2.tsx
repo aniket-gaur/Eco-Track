@@ -31,11 +31,11 @@ const AnimatedHeroSection = () => {
     }, [controls]);
 
     return (
-        <section ref={heroRef} className="relative bg-[#fdf9f0] py-16 overflow-hidden">
+        <section ref={heroRef} className="relative bg-[#E6E6E6] py-20 h-full overflow-hidden">
             <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
                 {/* Left Content */}
                 <motion.div
-                    className="md:w-1/2 p-4"
+                    className="md:w-1/2 p-6"
                     initial="hidden"
                     animate={controls}
                     variants={{
@@ -43,7 +43,7 @@ const AnimatedHeroSection = () => {
                         visible: { x: 0, opacity: 1, transition: { duration: 1 } },
                     }}
                 >
-                    <img src="/Screenshot 2025-03-08 014547.png" alt="Left Image" className="w-full" />
+                    <img src="\herosectionmain.jpg" alt="Left Image" className="w-full" />
                 </motion.div>
 
                 {/* Right Content */}
@@ -60,7 +60,7 @@ const AnimatedHeroSection = () => {
                     <p className="text-lg md:text-xl mb-6">
                         Experience the Future of Waste Management with Our Innovative Track and Discover How It Can Benefit Your Community.
                     </p>
-                    <button className="bg-green-700 text-white px-6 py-3 rounded-full hover:bg-green-800">
+                    <button className="bg-green-700   px-6 py-3 rounded-full hover:bg-green-800 gap-2   text-white  cursor-pointer">
                         Explore Solutions
                     </button>
                 </motion.div>

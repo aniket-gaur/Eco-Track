@@ -17,7 +17,7 @@ const AgendaSection = () => {
                 {items.map((item, index) => (
                     <Card key={index} className="w-64 shadow-md text-center">
                         <CardContent className="flex flex-col items-center space-y-4 p-6">
-                            <div className="bg-[#f5e7d3] p-4 rounded-full">{item.icon}</div>
+                            <div className="bg-[#6ca16a] p-4 rounded-full">{item.icon}</div>
                             <h3 className="text-lg font-semibold text-gray-800">{item.title}</h3>
                             <p className="text-gray-500">{item.subtitle}</p>
                         </CardContent>
