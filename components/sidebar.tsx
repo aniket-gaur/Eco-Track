@@ -1,9 +1,10 @@
-import { UserButton } from "@clerk/nextjs";
+import { useClerk, UserButton } from "@clerk/nextjs";
 import { currentUser } from "@clerk/nextjs/server";
 import { Bell, CreditCard, FileText, Inbox, LogOut, Settings, Shield, User } from "lucide-react";
 
 export default async function SidebarCom() {
     const user = await currentUser();
+
 
     return (
         <aside className="w-64 h-full bg-gradient-to-b from-green-900 to-green-700 text-white p-5 flex flex-col">
@@ -14,14 +15,14 @@ export default async function SidebarCom() {
             <nav className="space-y-2 flex-1 mt-4">
                 <NavItem href="/dashboard" icon={<User size={18} />} text="Profile" />
                 <NavItem href="/complaint" icon={<Inbox size={18} />} text="Complaints" />
-                <NavItem href="#" icon={<CreditCard size={18} />} text="Billings" />
+                <NavItem href="/bills" icon={<CreditCard size={18} />} text="Billings" />
                 <NavItem href="/contacts" icon={<FileText size={18} />} text="Contact" />
                 <NavItem href="#" icon={<Bell size={18} />} text="Notifications" />
 
 
                 {/* Settings Section */}
                 <h3 className="text-sm text-white mt-4">Settings</h3>
-                <NavItem href="/addressUpdate" icon={<Settings size={18} />} text="Update Address" />
+                <NavItem href="/data" icon={<Settings size={18} />} text="Update Address" />
                 <NavItem href="/" icon={<LogOut size={18} />} text="Logout" />
             </nav>
         </aside>

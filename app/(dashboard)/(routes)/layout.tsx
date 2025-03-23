@@ -1,6 +1,10 @@
+
+
 import SidebarCom from "@/components/sidebar";
+import { useParams } from "next/navigation";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+
     return (
         <div className="flex">
             {/* Sidebar - Sticky */}
@@ -10,7 +14,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
             {/* Main Content Area */}
             <div className="flex-1 flex flex-col">
-                {/* Top Navbar */}
+
 
 
                 {/* Page Content */}
