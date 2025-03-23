@@ -18,7 +18,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
 
                 {/* Page Content */}
-                <main className="p-6 flex-1 bg-white">{children}</main>
+                <main className="p-6 flex-1 bg-[radial-gradient(circle,_#2F4F2F,_#243D24,_#192B19)]">{children}</main>
             </div>
         </div>
     );

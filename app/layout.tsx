@@ -21,8 +21,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ASK-AI",
-  description: "The Next Gen AI-Platform",
+  title: "Eco-Track",
+
 };
 
 

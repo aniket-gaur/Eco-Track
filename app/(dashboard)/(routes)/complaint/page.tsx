@@ -67,9 +67,9 @@ export default function ComplaintForm() {
 
 
     return (
-        <Card className="max-w-2xl mx-auto shadow-xl rounded-lg border border-gray-200 bg-white">
+        <Card className="max-w-2xl mx-auto shadow-xl rounded-lg border border-gray-200 bg-[#F6F6F6]">
             <CardHeader>
-                <CardTitle className="text-2xl font-semibold text-green-800">Complaint Form</CardTitle>
+                <CardTitle className="text-2xl font-semibold etxt text-green-800">Complaint Form</CardTitle>
             </CardHeader>
             <CardContent>
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -80,7 +80,7 @@ export default function ComplaintForm() {
                             id="name"
                             {...register("name")}
                             placeholder="Enter your name"
-                            className="border border-gray-300 p-3 rounded-md focus:border-green-600 focus:ring-2 focus:ring-green-400 transition-all"
+                            className="border border-green-300 p-3 rounded-md focus:border-green-600 focus:ring-2 focus:ring-green-400 transition-all"
                         />
                         {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
                     </div>
@@ -92,7 +92,7 @@ export default function ComplaintForm() {
                             id="address"
                             {...register("address")}
                             placeholder="Enter your address"
-                            className="border border-gray-300 p-3 rounded-md focus:border-green-600 focus:ring-2 focus:ring-green-400 transition-all"
+                            className="border border-green-300  p-3 rounded-md focus:border-green-600 focus:ring-2 focus:ring-green-400 transition-all"
                         />
                         {errors.address && <p className="text-red-500 text-sm">{errors.address.message}</p>}
                     </div>
@@ -105,7 +105,7 @@ export default function ComplaintForm() {
                                 id="city"
                                 {...register("city")}
                                 placeholder="City"
-                                className="border border-gray-300 p-3 rounded-md focus:border-green-600 focus:ring-2 focus:ring-green-400 transition-all"
+                                className="border border-green-300 p-3 rounded-md focus:border-green-600 focus:ring-2 focus:ring-green-400 transition-all"
                             />
                             {errors.city && <p className="text-red-500 text-sm">{errors.city.message}</p>}
                         </div>
@@ -115,7 +115,7 @@ export default function ComplaintForm() {
                                 id="state"
                                 {...register("state")}
                                 placeholder="State"
-                                className="border border-gray-300 p-3 rounded-md focus:border-green-600 focus:ring-2 focus:ring-green-400 transition-all"
+                                className="border border-green-300 p-3 rounded-md focus:border-green-600 focus:ring-2 focus:ring-green-400 transition-all"
                             />
                             {errors.state && <p className="text-red-500 text-sm">{errors.state.message}</p>}
                         </div>
@@ -129,7 +129,7 @@ export default function ComplaintForm() {
                                 id="pincode"
                                 {...register("pincode")}
                                 placeholder="Pincode"
-                                className="border border-gray-300 p-3 rounded-md focus:border-green-600 focus:ring-2 focus:ring-green-400 transition-all"
+                                className="border border-green-300 p-3 rounded-md focus:border-green-600 focus:ring-2 focus:ring-green-400 transition-all"
                             />
                             {errors.pincode && <p className="text-red-500 text-sm">{errors.pincode.message}</p>}
                         </div>
@@ -139,7 +139,7 @@ export default function ComplaintForm() {
                                 id="phone"
                                 {...register("phone")}
                                 placeholder="Phone Number"
-                                className="border border-gray-300 p-3 rounded-md focus:border-green-600 focus:ring-2 focus:ring-green-400 transition-all"
+                                className="border border-green-300 p-3 rounded-md focus:border-green-600 focus:ring-2 focus:ring-green-400 transition-all"
                             />
                             {errors.phone && <p className="text-red-500 text-sm">{errors.phone.message}</p>}
                         </div>
@@ -152,7 +152,7 @@ export default function ComplaintForm() {
                             id="reason"
                             {...register("reason")}
                             placeholder="Explain your complaint..."
-                            className="border border-gray-300 p-3 rounded-md focus:border-green-600 focus:ring-2 focus:ring-green-400 transition-all"
+                            className="border border-green-300 p-3 rounded-md focus:border-green-600 focus:ring-2 focus:ring-green-400 transition-all"
                         />
                         {errors.reason && <p className="text-red-500 text-sm">{errors.reason.message}</p>}
                     </div>
@@ -160,7 +160,7 @@ export default function ComplaintForm() {
                     {/* File Upload */}
                     <div className="space-y-1">
                         <Label htmlFor="files">Upload Photos (Max: 3)</Label>
-                        <Input id="files" type="file" multiple accept="image/*" onChange={handleFileChange} />
+                        <Input id="files" type="file" className=" border border-green-300 p-3 rounded-md " multiple accept="image/*" onChange={handleFileChange} />
                         {fileError && <p className="text-red-500 text-sm">{fileError}</p>}
                     </div>
 

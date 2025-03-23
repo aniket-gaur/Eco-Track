@@ -1,7 +1,12 @@
 "use client";
+
 import { useState, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/navigation";
 
 export default function AddressUpdater() {
+  const router = useRouter();
   const [address, setAddress] = useState({
     country: "",
     city: "",
@@ -27,6 +32,7 @@ export default function AddressUpdater() {
           data?.address || { house: "", country: "", city: "", pincode: "" }
         );
       } catch (error) {
+        toast.error("Error fetching metadata!");
         console.error("Error fetching metadata:", error);
       }
     };
@@ -49,11 +55,16 @@ export default function AddressUpdater() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Failed to update");
 
-      alert(data.message);
+      toast.success(
+        "Address updated successfully! Redirecting to Dashboard 🎉"
+      );
       setAddress(formData);
       setIsEditing(false);
+      setTimeout(() => {
+        router.push("/dashboard"); // Redirect to dashboard after 2 seconds
+      }, 3000);
     } catch (error) {
-      alert(error.message);
+      toast.error(error.message || "Update failed! ❌");
       console.error("Update failed:", error);
     } finally {
       setLoading(false);
@@ -61,69 +72,89 @@ export default function AddressUpdater() {
   };
 
   return (
-    <div className="p-4 bg-green-100 rounded-lg">
-      <h2 className="text-lg font-bold mb-2">Address</h2>
+    <div className="bg-white p-6 shadow-md rounded-md border border-green-300 max-w-lg mx-auto">
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
+
+      <h2 className="text-xl font-bold text-green-700 mb-4">Address Form</h2>
       {isEditing ? (
-        <div>
-          <label className="block">House No:</label>
-          <input
-            type="text"
-            name="house"
-            value={formData.house}
-            onChange={handleChange}
-            className="border p-1 rounded w-full"
-          />
-          <label className="block">Country:</label>
-          <input
-            type="text"
-            name="country"
-            value={formData.country}
-            onChange={handleChange}
-            className="border p-1 rounded w-full"
-          />
-          <label className="block mt-2">City:</label>
-          <input
-            type="text"
-            name="city"
-            value={formData.city}
-            onChange={handleChange}
-            className="border p-1 rounded w-full"
-          />
-          <label className="block mt-2">Postal Code:</label>
-          <input
-            type="text"
-            name="pincode"
-            value={formData.pincode}
-            onChange={handleChange}
-            className="border p-1 rounded w-full"
-          />
+        <div className="space-y-4">
+          <div>
+            <label className="block font-medium text-green-700">
+              House No:
+            </label>
+            <input
+              type="text"
+              name="house"
+              value={formData.house}
+              onChange={handleChange}
+              className="border border-green-400 p-2 rounded-md w-full"
+            />
+          </div>
+          <div>
+            <label className="block font-medium text-green-700">Country:</label>
+            <input
+              type="text"
+              name="country"
+              value={formData.country}
+              onChange={handleChange}
+              className="border border-green-400 p-2 rounded-md w-full"
+            />
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block font-medium text-green-700">City:</label>
+              <input
+                type="text"
+                name="city"
+                value={formData.city}
+                onChange={handleChange}
+                className="border border-green-400 p-2 rounded-md w-full"
+              />
+            </div>
+            <div>
+              <label className="block font-medium text-green-700">
+                Pincode:
+              </label>
+              <input
+                type="text"
+                name="pincode"
+                value={formData.pincode}
+                onChange={handleChange}
+                className="border border-green-400 p-2 rounded-md w-full"
+              />
+            </div>
+          </div>
           <button
             onClick={handleUpdate}
-            className="mt-2 bg-blue-500 text-white px-4 py-1 rounded"
+            className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 rounded-md mt-2"
             disabled={loading}
           >
-            {loading ? "Saving..." : "Save"}
+            {loading ? "Saving..." : "Save Address"}
           </button>
         </div>
       ) : (
-        <div>
+        <div className="space-y-2">
           <p>
-            <strong>House No:</strong> {address.house || "N/A"}
+            <strong className="text-green-700">House No:</strong>{" "}
+            {address.house || "N/A"}
           </p>
           <p>
-            <strong>Country:</strong> {address.country || "N/A"}
+            <strong className="text-green-700">Country:</strong>{" "}
+            {address.country || "N/A"}
           </p>
           <p>
-            <strong>City:</strong> {address.city || "N/A"}
+            <strong className="text-green-700">City:</strong>{" "}
+            {address.city || "N/A"}
           </p>
           <p>
-            <strong>Postal Code:</strong> {address.pincode || "N/A"}
+            <strong className="text-green-700">Pincode:</strong>{" "}
+            {address.pincode || "N/A"}
           </p>
           <button
             onClick={() => setIsEditing(true)}
-            className="mt-2 bg-black text-white p-2 rounded"
+            className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 rounded-md mt-2"
           >
-            ✏️ Edit
+            ✏️ Edit Address
           </button>
         </div>
       )}
