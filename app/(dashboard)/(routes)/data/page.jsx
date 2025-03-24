@@ -61,7 +61,7 @@ export default function AddressUpdater() {
       setAddress(formData);
       setIsEditing(false);
       setTimeout(() => {
-        router.push("/dashboard"); // Redirect to dashboard after 2 seconds
+        router.push("/dashboard");
       }, 3000);
     } catch (error) {
       toast.error(error.message || "Update failed! ❌");

@@ -1,9 +1,9 @@
 import { UserButton } from "@clerk/nextjs";
 import { currentUser } from "@clerk/nextjs/server";
-import { Bell, Contact, CreditCard, FileText, Inbox, LogOut, PersonStanding, Settings, Shield, User } from "lucide-react";
+import { Bell, Contact, CreditCard, DatabaseIcon, FileText, Inbox, LogOut, PersonStanding, Settings, Shield, User } from "lucide-react";
 import { FaRegAddressBook } from "react-icons/fa";
 
-export default async function Sidebar() {
+export default async function AdminSidebar() {
     const user = await currentUser();
 
 
@@ -13,9 +13,9 @@ export default async function Sidebar() {
             <UserInfo user={user} />
 
             {/* Navigation */}
-            <nav className="space-y-2 flex-1 ">
+            <nav className="space-y-2 flex-1 mt-4">
                 <NavItem href="/dashboard" icon={<User size={18} />} text="Profile" />
-                <NavItem href="/complaint" icon={<Inbox size={18} />} text="Complaints" />
+                <NavItem href="/admin/statistics" icon={<DatabaseIcon size={18} />} text="Statistics" />
                 <NavItem href="/bills" icon={<CreditCard size={18} />} text="Billings" />
                 <NavItem href="/contacts" icon={<Contact size={18} />} text="Contact" />
 
@@ -33,7 +33,7 @@ export default async function Sidebar() {
 
 
 const UserInfo = ({ user }: { user: any }) => (
-    <div className="flex items-center gap-2  pl-2 border border-gray-300 rounded-lg p-3 bg-green-800/30">
+    <div className="flex items-center gap-2  pl-1 border border-gray-300 rounded-lg p-3 bg-green-800/30">
         <UserButton />
 
         <div className="flex flex-col ">
@@ -47,7 +47,7 @@ const UserInfo = ({ user }: { user: any }) => (
 const NavItem = ({ href, icon, text }: { href: string; icon: React.ReactNode; text: string }) => (
     <a
         href={href}
-        className="flex items-center gap-2 p-2 rounded-lg text-gray-200 hover:text-white hover:bg-green-800 transition duration-300 mt-4 hover:-translate-y-1 hover:scale-100"
+        className="flex items-center gap-2 p-2 rounded-lg text-gray-200 hover:text-white hover:bg-green-800 transition duration-300"
     >
         {icon}
         <span>{text}</span>

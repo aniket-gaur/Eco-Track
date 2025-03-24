@@ -58,9 +58,9 @@ export default function BillingPage() {
             {/* Header */}
             <h2 className="text-3xl font-semibold text-gray-800 mb-6">Billing Overview</h2>
 
-            {/* Filters */}
+
             <div className="flex flex-wrap gap-4 mb-6 w-full max-w-5xl">
-                {/* Date Filter */}
+
                 <Input
                     type="date"
                     placeholder="Filter by Due Date"
@@ -132,7 +132,7 @@ export default function BillingPage() {
                         <div className="p-4">
                             <h3 className="text-lg font-semibold">{selectedBill.name}</h3>
 
-                            {/* Charge Breakdown */}
+
                             <div className="border rounded-lg p-4 bg-gray-50">
                                 <p><strong>Base Amount:</strong> ₹{selectedBill.baseAmount}</p>
                                 <p><strong>Service Fee:</strong> ₹{selectedBill.serviceFee}</p>

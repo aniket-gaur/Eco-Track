@@ -19,7 +19,7 @@ export default async function ProfilePage() {
 
     const userData = {
         name: `${user?.firstName || "User"} ${user?.lastName || ""}`,
-        role: `${user?.role || "User"}`,
+        role: `${user?.publicMetadata?.role || "User"}`,
 
         email: `${user?.primaryEmailAddress?.emailAddress || "user@example.com"}`,
         phone: `${user?.primaryPhoneNumber?.phoneNumber}`,
