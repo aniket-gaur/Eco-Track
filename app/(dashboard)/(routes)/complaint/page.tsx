@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import complaintSchema from "@/schema/complaintschema";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -11,25 +11,18 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import Image from "next/image";
 
-// ✅ Zod Schema for Validation
-const complaintSchema = z.object({
-    name: z.string().min(2, "Name must be at least 2 characters"),
-    address: z.string().min(5, "Address must be at least 5 characters"),
-    city: z.string().min(2, "City must be at least 2 characters"),
-    state: z.string().min(2, "State must be at least 2 characters"),
-    pincode: z.string().length(6, "Pincode must be exactly 6 digits"),
-    phone: z.string().regex(/^[6-9]\d{9}$/, "Enter a valid phone number"),
-    reason: z.string().min(10, "Reason must be at least 10 characters"),
-    files: z.any(),
-});
+
+
 
 export default function ComplaintForm() {
     const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
     const [fileError, setFileError] = useState<string | null>(null);
+    const [loading, setLoading] = useState(false);
 
     // ✅ React Hook Form setup with Zod
     const {
         register,
+        // Removed onSubmit to avoid conflict
         handleSubmit,
         formState: { errors },
         setValue,
@@ -59,11 +52,25 @@ export default function ComplaintForm() {
         setValue("files", updatedFiles);
     };
 
-    const onSubmit = (data: any) => {
+    const onSubmit = async (data: any) => {
 
-        console.log("Complaint Submitted:", data);
-        alert("Complaint Submitted Successfully!");
-    };
+        // Add your form submission logic here
+        setLoading(true);
+        const res = await fetch("/api/form-data", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+        });
+        setLoading(false);
+        if (res.ok) {
+            alert("Complaint submitted successfully");
+
+
+
+        }
+    }
+
+
 
 
     return (
@@ -72,8 +79,8 @@ export default function ComplaintForm() {
                 <CardTitle className="text-2xl font-semibold etxt text-green-800">Complaint Form</CardTitle>
             </CardHeader>
             <CardContent>
+
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                    {/* Name */}
                     <div className="space-y-1">
                         <Label htmlFor="name">Full Name</Label>
                         <Input
@@ -173,6 +180,7 @@ export default function ComplaintForm() {
                                         src={URL.createObjectURL(file)}
                                         alt={`Uploaded file ${index + 1}`}
                                         fill
+                                        unoptimized
                                         className="object-cover"
                                     />
                                     <button
@@ -188,7 +196,7 @@ export default function ComplaintForm() {
 
                     {/* Submit Button */}
                     <Button type="submit" className="w-full bg-green-700 hover:bg-green-800 text-lg font-semibold py-2">
-                        Submit Complaint
+                        {loading ? "Submitting..." : "Submit"}
                     </Button>
                 </form>
             </CardContent>

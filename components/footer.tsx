@@ -10,10 +10,10 @@ const Footer = () => {
     const [enabled, setEnabled] = useState(false);
 
     return (
-        <footer className="bg-[#3e5b3d] text-white py-12 relative overflow-hidden">
+        <footer className=" bg-gradient-to-b from-[#173b17] to-[#86bb1d] text-white py-12 relative overflow-hidden">
             {/* Light Effects */}
             <div className="absolute left-1/4 top-1/3 w-[300px] h-[300px] bg-green-400 opacity-20 blur-[100px] -z-10"></div>
-            <div className="absolute right-1/4 bottom-1/3 w-[400px] h-[400px] bg-green-500 opacity-25 blur-[140px] -z-10"></div>
+
 
             <div className="container mx-auto px-6 lg:px-20 grid grid-cols-1 md:grid-cols-4 gap-8">
                 {/* Stay Connected */}

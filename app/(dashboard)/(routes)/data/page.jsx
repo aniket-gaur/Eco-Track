@@ -72,7 +72,7 @@ export default function AddressUpdater() {
   };
 
   return (
-    <div className="bg-white p-6 shadow-md rounded-md border border-green-300 max-w-lg mx-auto">
+    <div className="bg-white p-6 max-h-screen shadow-md rounded-md border border-green-300 max-w-lg mx-auto">
       <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
 
       <h2 className="text-xl font-bold text-green-700 mb-4">Address Form</h2>

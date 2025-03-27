@@ -9,14 +9,14 @@ const features = [
         description:
             "Discover how our user-friendly app can streamline your waste management, empowering you to make a real impact.",
         buttonText: "Download Now",
-        icon: "\eco-friendly app.avif", // Replace with actual icon path
+        icon: "\eco-friendly app.avif",
     },
     {
         title: "Sustainable Solutions",
         description:
             "Our intuitive app features make recycling and composting a breeze, helping you adopt sustainable habits.",
         buttonText: "Learn More",
-        icon: "\green-icon.jpg", // Replace with actual icon path
+        icon: "\green-icon.jpg",
     },
     {
         title: "Join The Movement",
@@ -29,10 +29,10 @@ const features = [
 
 const AboutSection = () => {
     return (
-        <section className="bg-[#2F4F2F] py-16">
+        <section className="bg-gradient-to-b to-[#6B8E23] from-[#2F4F2F] py-16">
             <div className="container mx-auto text-center">
                 {/* Title */}
-                <h2 className="text-4xl font-bold text-black">
+                <h2 className="text-4xl font-bold text-black shadow-lg">
                     Empowering Sustainable Communities
                 </h2>
                 <p className="text-lg text-gray-200 mt-3 max-w-2xl mx-auto">

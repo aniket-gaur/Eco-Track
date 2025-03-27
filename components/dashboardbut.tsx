@@ -22,7 +22,7 @@ export default function CustomButton() {
                 </motion.span>
             </button> */}
 
-            <Button size="lg" className="gap-2 bg-green-700 text-white hover:bg-green-800 cursor-pointer">
+            <Button size="lg" className="gap-1 text-1xl rounded-3xl  bg-[#2F4F2F] text-white hover:bg-green-900 cursor-pointer">
                 DashBoard
                 <motion.span
                     initial={{ rotate: 0 }}

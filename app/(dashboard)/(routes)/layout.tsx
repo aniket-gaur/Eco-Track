@@ -15,7 +15,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
 
 
-        <div className="h-full relative bg-[radial-gradient(circle,_#2F4F2F,_#243D24,_#192B19)]">
+        <div className="h-full relative  bg-gradient-to-b from-[#173b17] to-[#86bb1d]">
             <div className="hidden h-full md:flex md:flex-col md:w-72 md:fixed md:inset-y-0 z-[80]">
                 <Sidebar />
             </div>

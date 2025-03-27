@@ -17,10 +17,9 @@ export default function HeroSection() {
     }, [titleNumber, titles]);
 
     return (
-        <section className="relative bg-[#2F4F2F] min-h-max overflow-hidden">
-            {/* Light Effect */}
+        <section className="relative  bg-gradient-to-b from-[#2F4F2F] to-[#86bb1d]  min-h-max overflow-hidden">
+
             <div className="absolute -top-16 left-1/3 h-50 w-50 bg-green-400 opacity-30 blur-3xl rounded-full"></div>
-            <div className="absolute -bottom-16 right-1/4 h-32 w-32 bg-green-500 opacity-30 blur-2xl rounded-full"></div>
 
             <div className="w-full relative z-10">
                 <div className="container mx-auto">
