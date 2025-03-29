@@ -5,11 +5,22 @@ import Complaint from "@/models/complaintform";
 export async function POST(req: Request) {
   try {
     await dbconnect();
-    const body = await req.json(); // Parse JSON body
+    const body = await req.json(); 
+    console.log(body.fullName);
+    console.log(body.address);
+    console.log(body.city);
+    console.log(body.state);
+    console.log(body.pincode);
+    console.log(body.phoneNumber);
+    console.log(body.reasonForComplaint);
+    
 
-    const { fullName, address, city, state, pincode, phoneNumber, reasonForComplaint, images } = body;
+    
+    
 
-    if (!fullName || !address || !city || !state || !pincode || !phoneNumber || !reasonForComplaint) {
+    const { fullName, address, city, state, pincode, phoneNumber, reasonForComplaint ,images } = body;
+
+    if (!fullName ||  !address || !city || !state || !pincode || !phoneNumber || !reasonForComplaint || !images ) {
       return NextResponse.json({ error: "All fields are required" }, { status: 400 });
     }
 
@@ -26,6 +37,8 @@ export async function POST(req: Request) {
       phoneNumber,
       reasonForComplaint,
       images,
+      
+      
     });
 
     await complaintEntry.save();

@@ -42,14 +42,14 @@ export default function ComplaintForm() {
             setFileError(null);
             const updatedFiles = [...uploadedFiles, ...newFiles].slice(0, 3);
             setUploadedFiles(updatedFiles);
-            setValue("files", updatedFiles);
+            setValue("images", updatedFiles.map(file => file.name));
         }
     };
 
     const removeImage = (index: number) => {
         const updatedFiles = uploadedFiles.filter((_, i) => i !== index);
         setUploadedFiles(updatedFiles);
-        setValue("files", updatedFiles);
+        setValue("images", updatedFiles.map(file => file.name));
     };
 
     const onSubmit = async (data: any) => {
@@ -64,6 +64,17 @@ export default function ComplaintForm() {
         setLoading(false);
         if (res.ok) {
             alert("Complaint submitted successfully");
+            // Reset the form
+            setUploadedFiles([]);
+            setValue("images", []);
+            setValue("fullName", "");
+            setValue("address", "");
+            setValue("city", "");
+            setValue("state", "");
+            setValue("pincode", "");
+            setValue("phoneNumber", "");
+            setValue("reasonForComplaint", "");
+
 
 
 
@@ -82,14 +93,14 @@ export default function ComplaintForm() {
 
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     <div className="space-y-1">
-                        <Label htmlFor="name">Full Name</Label>
+                        <Label htmlFor="fullName">Full Name</Label>
                         <Input
-                            id="name"
-                            {...register("name")}
+                            id="fullName"
+                            {...register("fullName")}
                             placeholder="Enter your name"
                             className="border border-green-300 p-3 rounded-md focus:border-green-600 focus:ring-2 focus:ring-green-400 transition-all"
                         />
-                        {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
+                        {errors.fullName && <p className="text-red-500 text-sm">{errors.fullName.message}</p>}
                     </div>
 
                     {/* Address */}
@@ -141,28 +152,30 @@ export default function ComplaintForm() {
                             {errors.pincode && <p className="text-red-500 text-sm">{errors.pincode.message}</p>}
                         </div>
                         <div className="space-y-1">
-                            <Label htmlFor="phone">Phone Number</Label>
+                            <Label htmlFor="phoneNumber">Phone Number</Label>
                             <Input
-                                id="phone"
-                                {...register("phone")}
+                                id="phoneNumber"
+                                {...register("phoneNumber")}
                                 placeholder="Phone Number"
                                 className="border border-green-300 p-3 rounded-md focus:border-green-600 focus:ring-2 focus:ring-green-400 transition-all"
                             />
-                            {errors.phone && <p className="text-red-500 text-sm">{errors.phone.message}</p>}
+                            {errors.phoneNumber && <p className="text-red-500 text-sm">{errors.phoneNumber.message}</p>}
                         </div>
                     </div>
 
                     {/* Reason for Complaint */}
                     <div className="space-y-1">
-                        <Label htmlFor="reason">Reason for Complaint</Label>
+                        <Label htmlFor="reasonForComplaint">Reason for Complaint</Label>
                         <Textarea
-                            id="reason"
-                            {...register("reason")}
+                            id="reasonForComplaint"
+                            {...register("reasonForComplaint")}
                             placeholder="Explain your complaint..."
                             className="border border-green-300 p-3 rounded-md focus:border-green-600 focus:ring-2 focus:ring-green-400 transition-all"
                         />
-                        {errors.reason && <p className="text-red-500 text-sm">{errors.reason.message}</p>}
+                        {errors.reasonForComplaint && <p className="text-red-500 text-sm">{errors.reasonForComplaint.message}</p>}
                     </div>
+
+
 
                     {/* File Upload */}
                     <div className="space-y-1">
@@ -195,11 +208,11 @@ export default function ComplaintForm() {
                     )}
 
                     {/* Submit Button */}
-                    <Button type="submit" className="w-full bg-green-700 hover:bg-green-800 text-lg font-semibold py-2">
+                    <Button type="submit" className="w-full bg-green-700 hover:bg-green-800 text-lg font-semibold py-2 cursor-pointer">
                         {loading ? "Submitting..." : "Submit"}
                     </Button>
                 </form>
             </CardContent>
-        </Card>
+        </Card >
     );
 }

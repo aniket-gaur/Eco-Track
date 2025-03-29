@@ -10,6 +10,7 @@ export interface Complaint extends Document {
   reasonForComplaint:string,
   images:string[],
   createdAt:Date
+  status:string
 
 
 }
@@ -24,7 +25,8 @@ const ComplaintSchema:Schema<Complaint> = new mongoose.Schema(
     phoneNumber: { type: String, required: true },
     reasonForComplaint: { type: String, required: true },
     images: [{ type: String }],
-    createdAt:{type:Date,default:Date.now , required:true}
+    createdAt:{type:Date,default:Date.now , required:true},
+    status:{type:String,default:"pending",required:true}
   },
   { timestamps: true }
 );

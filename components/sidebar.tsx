@@ -26,6 +26,7 @@ export default async function Sidebar() {
                 <NavItem href="https://epic-sloth-92.accounts.dev/user" icon={<PersonStanding size={18} />} text=" Personal Information" />
                 <NavItem href="/data" icon={<FaRegAddressBook size={18} />} text=" Address" />
                 <NavItem href="/" icon={<LogOut size={18} />} text="Logout" />
+                <NavItem href="/yourcom" icon={<LogOut size={18} />} text="Complaints" />
             </nav>
         </aside>
     );
