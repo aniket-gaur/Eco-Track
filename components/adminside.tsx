@@ -16,7 +16,7 @@ export default async function AdminSidebar() {
             <nav className="space-y-2 flex-1 mt-4">
                 <NavItem href="/dashboard" icon={<User size={18} />} text="Profile" />
                 <NavItem href="/admin/statistics" icon={<DatabaseIcon size={18} />} text="Statistics" />
-                <NavItem href="/bills" icon={<CreditCard size={18} />} text="Billings" />
+                <NavItem href="/admin/complaints" icon={<CreditCard size={18} />} text="Recieved" />
                 <NavItem href="/contacts" icon={<Contact size={18} />} text="Contact" />
 
 

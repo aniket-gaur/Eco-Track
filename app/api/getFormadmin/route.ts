@@ -6,11 +6,12 @@ const uri = process.env.MONGO_URI || "";
 const client = new MongoClient(uri);
 
 export async function GET() {
-    const user = await currentUser();
-    let  phoneNumber = user?.phoneNumbers[0]?.phoneNumber || "";
-    
-    phoneNumber = phoneNumber.replace(/^\+91/, "");
-    
+    const user = await currentUser(); 
+    type Address = { pincode?: string };
+    type PublicMetadata = { address?: Address };
+    const publicMetadata = user?.publicMetadata as PublicMetadata;
+    const pincode: string = publicMetadata?.address?.pincode || "city";
+console.log(pincode);
 
     try {
         await client.connect();
@@ -20,11 +21,11 @@ export async function GET() {
 
  
 
-        const data = await collection.find({phoneNumber: phoneNumber})
+        const data = await collection.find({pincode: pincode})
 .toArray();
 
         console.log(data);
-        console.log("User's phone number:", phoneNumber);
+        console.log("admin pincode :", pincode);
 
 
         return NextResponse.json(data);
