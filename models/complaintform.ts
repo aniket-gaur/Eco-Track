@@ -1,4 +1,12 @@
-import mongoose, { Schema, Document, Mongoose } from "mongoose";
+import mongoose, { Schema, Document } from "mongoose";
+import { currentUser } from "@clerk/nextjs/server";
+
+ 
+export async function getCurrentUserId(): Promise<string | null> {
+  const user = await currentUser();
+  return user?.id || null;
+}
+
 
 export interface Complaint extends Document {
   fullName:string,
@@ -9,8 +17,9 @@ export interface Complaint extends Document {
   phoneNumber:string,
   reasonForComplaint:string,
   images:string[],
+userID:string,
   createdAt:Date
-  status:string
+  status:string,
 
 
 }
@@ -25,6 +34,8 @@ const ComplaintSchema:Schema<Complaint> = new mongoose.Schema(
     phoneNumber: { type: String, required: true },
     reasonForComplaint: { type: String, required: true },
     images: [{ type: String }],
+    userID: { type: String, required: true },
+    
     createdAt:{type:Date,default:Date.now , required:true},
     status:{type:String,default:"pending",required:true}
   },

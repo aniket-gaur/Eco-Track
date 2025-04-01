@@ -7,17 +7,22 @@ const client = new MongoClient(uri);
 
 export async function GET() {
     const user = await currentUser();
-    console.log(user);
+    let  phoneNumber = user?.phoneNumbers[0]?.phoneNumber || "";
+    phoneNumber = phoneNumber.replace(/^\+91/, "");
     
+
     try {
         await client.connect();
-        const database =  client.db("test");
-        // Use a valid collection name
+        const database = client.db("test");
         const collection = database.collection("complaints");
+        // Query by phoneNumber or userId
+        const data = await collection.find({phoneNumber: phoneNumber})
+.toArray();
 
-        const data = await collection.find({}).toArray();
         console.log(data);
-        
+        console.log("User's phone number:", phoneNumber);
+
+
         return NextResponse.json(data);
     } catch (error) {
         console.error("Error fetching data:", error);
