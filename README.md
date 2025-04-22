@@ -43,16 +43,12 @@ The Smart Waste Management System revolutionizes urban sanitation by directly co
 ![image](https://github.com/user-attachments/assets/9653fa34-1d6b-4df8-9393-9d40248a93b9)
 
 
-
-📜 License
-
-This project is licensed under the MIT License.
-🤝 Contributing
+ 
 
 Contributions are welcome! Feel free to fork this repo, create a new branch, and submit a pull request.
 📞 Contact
 
-💡 Author: Your Name
-📧 Email: your.email@example.com
-🔗 LinkedIn: Your Profile
+💡 Author: Aniket Gaur 
+📧 Email: aniketgaur350@gmail.com
+🔗 LinkedIn: https://www.linkedin.com/in/aniket-gaur/
 
