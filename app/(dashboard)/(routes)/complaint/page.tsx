@@ -53,36 +53,56 @@ export default function ComplaintForm() {
     };
 
     const onSubmit = async (data: any) => {
-
-        // Add your form submission logic here
         setLoading(true);
-        const res = await fetch("/api/form-data", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data),
-        });
-        setLoading(false);
-        if (res.ok) {
-            alert("Complaint submitted successfully");
-            // Reset the form
-            setUploadedFiles([]);
-            setValue("images", []);
-            setValue("fullName", "");
-            setValue("address", "");
-            setValue("city", "");
-            setValue("state", "");
-            setValue("pincode", "");
-            setValue("phoneNumber", "");
-            setValue("reasonForComplaint", "");
 
+        try {
+            const res = await fetch("/api/form-data", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+            });
 
+            if (res.ok) {
+                // After form submission success, call the email API
+                const emailRes = await fetch("/api/sendConfirmation", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        userEmail: "ayushgaur3008@gmail.com", // TODO: get real email (currently form has phone but not email?)
+                        userName: data.fullName,
+                        complaintId: Math.random().toString(36).substring(2, 10), // fake complaint ID, ideally from backend
+                    }),
+                });
 
+                if (emailRes.ok) {
+                    console.log("Confirmation email sent successfully!");
+                } else {
+                    console.error("Failed to send confirmation email.");
+                }
 
+                alert("Complaint submitted successfully!");
+
+                // Reset form
+                setUploadedFiles([]);
+                setValue("images", []);
+                setValue("fullName", "");
+                setValue("address", "");
+                setValue("city", "");
+                setValue("state", "");
+                setValue("pincode", "");
+                setValue("phoneNumber", "");
+                setValue("reasonForComplaint", "");
+
+            } else {
+                alert("Failed to submit complaint.");
+            }
+        } catch (error) {
+            console.error("Error submitting complaint:", error);
+            alert("Something went wrong!");
         }
-    }
 
-
-
+        setLoading(false);
+    };
 
     return (
         <Card className="max-w-2xl mx-auto shadow-xl rounded-lg border border-gray-200 bg-[#F6F6F6]">
