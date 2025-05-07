@@ -1,9 +1,10 @@
-'use client'
+'use client';
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
+import { useEffect, useState } from "react";
+import EcoTrackTable from "@/components/data-table";
 import { Bell } from "lucide-react";
 import { ResponsiveBar } from '@nivo/bar';
 
@@ -15,12 +16,40 @@ const data = [
 ];
 
 export default function Dashboard() {
+    const [ecoData, setEcoData] = useState([]);
+    const [filterStatus, setFilterStatus] = useState("all");
+    const [sortAsc, setSortAsc] = useState(true);
+
+    useEffect(() => {
+        fetch("/data.json")
+            .then((res) => res.json())
+            .then(setEcoData)
+            .catch((err) => console.error("Failed to fetch data:", err));
+    }, []);
+
+    // Filter function
+    function filterEcoData(data: any[], status: string) {
+        if (status === "all") return data;
+        return data.filter((item: { Status: any; }) => item.Status === status);
+    }
+
+    // Sort function
+    function sortEcoData(data: any, ascending = true) {
+        return [...data].sort((a, b) => {
+            const aVal = parseFloat(a["Waste Level (%)"]);
+            const bVal = parseFloat(b["Waste Level (%)"]);
+            return ascending ? aVal - bVal : bVal - aVal;
+        });
+    }
+
+    const filteredData = filterEcoData(ecoData, filterStatus);
+    const filteredAndSortedData = sortEcoData(filteredData, sortAsc);
+
     return (
         <div className="p-6 space-y-6">
             <div className="flex justify-between items-center">
                 <h1 className="text-3xl font-bold text-white">Dashboard</h1>
                 <div className="flex items-center space-x-4">
-
                     <Button>Download Report</Button>
                 </div>
             </div>
@@ -36,36 +65,28 @@ export default function Dashboard() {
                 <TabsContent value="overview">
                     <div className="grid md:grid-cols-4 gap-6 mt-4">
                         <Card>
-                            <CardHeader>
-                                <CardTitle>Total Bins</CardTitle>
-                            </CardHeader>
+                            <CardHeader><CardTitle>Total Bins</CardTitle></CardHeader>
                             <CardContent>
                                 <p className="text-2xl font-bold">120</p>
                                 <p className="text-sm text-muted-foreground">+5% since last month</p>
                             </CardContent>
                         </Card>
                         <Card>
-                            <CardHeader>
-                                <CardTitle>Bins 80%+ Full</CardTitle>
-                            </CardHeader>
+                            <CardHeader><CardTitle>Bins 80%+ Full</CardTitle></CardHeader>
                             <CardContent>
                                 <p className="text-2xl font-bold">15</p>
                                 <p className="text-sm text-muted-foreground">Critical to collect</p>
                             </CardContent>
                         </Card>
                         <Card>
-                            <CardHeader>
-                                <CardTitle>Offline Sensors</CardTitle>
-                            </CardHeader>
+                            <CardHeader><CardTitle>Offline Sensors</CardTitle></CardHeader>
                             <CardContent>
                                 <p className="text-2xl font-bold">3</p>
                                 <p className="text-sm text-muted-foreground">Needs attention</p>
                             </CardContent>
                         </Card>
                         <Card>
-                            <CardHeader>
-                                <CardTitle>Optimized Routes</CardTitle>
-                            </CardHeader>
+                            <CardHeader><CardTitle>Optimized Routes</CardTitle></CardHeader>
                             <CardContent>
                                 <p className="text-2xl font-bold">7</p>
                                 <p className="text-sm text-muted-foreground">Today</p>
@@ -75,9 +96,7 @@ export default function Dashboard() {
 
                     <div className="grid md:grid-cols-2 gap-6 mt-6">
                         <Card>
-                            <CardHeader>
-                                <CardTitle>Bin Fill Level Overview</CardTitle>
-                            </CardHeader>
+                            <CardHeader><CardTitle>Bin Fill Level Overview</CardTitle></CardHeader>
                             <CardContent className="h-[300px]">
                                 <ResponsiveBar
                                     data={data}
@@ -107,10 +126,9 @@ export default function Dashboard() {
                                 />
                             </CardContent>
                         </Card>
+
                         <Card>
-                            <CardHeader>
-                                <CardTitle>Recent Alerts</CardTitle>
-                            </CardHeader>
+                            <CardHeader><CardTitle>Recent Alerts</CardTitle></CardHeader>
                             <CardContent className="space-y-4">
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center space-x-2">
@@ -128,6 +146,37 @@ export default function Dashboard() {
                                 </div>
                             </CardContent>
                         </Card>
+                    </div>
+                </TabsContent>
+
+                {/* Analytics Tab */}
+                <TabsContent value="analytics">
+                    <div className="mt-6">
+                        <h2 className="text-xl font-semibold mb-4 text-white">Daily Bin Data</h2>
+
+                        <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
+                            {/* Filter */}
+                            <div className="flex items-center space-x-2">
+                                <label htmlFor="statusFilter" className="text-white">Filter by Status:</label>
+                                <select
+                                    id="statusFilter"
+                                    className="px-2 py-1 rounded-md border text-white bg-gray-800 border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    value={filterStatus}
+                                    onChange={(e) => setFilterStatus(e.target.value)}
+                                >
+                                    <option value="all">All</option>
+                                    <option value="Collected">Collected</option>
+                                    <option value="Not Collected">Not Collected</option>
+                                </select>
+                            </div>
+
+                            {/* Sort */}
+                            <Button onClick={() => setSortAsc(prev => !prev)}>
+                                Sort by Waste Level {sortAsc ? "↑" : "↓"}
+                            </Button>
+                        </div>
+
+                        <EcoTrackTable data={filteredAndSortedData} />
                     </div>
                 </TabsContent>
             </Tabs>
