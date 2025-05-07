@@ -1,37 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+ 🗑️ Smart Waste Management System
+📌 Overview
 
-## Getting Started
+The Smart Waste Management System revolutionizes urban sanitation by directly connecting citizens with garbage managers through intelligent systems. This approach leverages IoT sensors, real-time data, and intuitive communication platforms to ensure:
+✅ Timely waste collection
+✅ Prevention of overflow
+✅ Promotion of responsible waste management
+🚀 Features:-
+    📡 IoT-Based Smart Bins – Sensors detect fill levels and send real-time data
+    📊 Data Analytics Dashboard – Tracks waste patterns and optimizes collection routes
+    📍 Location-Based Tracking – Identifies overflowing bins using GPS
+    📢 Citizen Engagement Platform – Enables reporting of waste issues
+    🔄 Automated Scheduling – Efficient waste pickup based on real-time data
 
-First, run the development server:
+🏗️ Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+    Frontend: React.js / Next.js
+    Backend: Node.js / Express
+    Database: MongoDB / Firebase
+    IoT Integration: Arduino / Raspberry Pi
+    Cloud Services: AWS / Google Cloud
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+📦 Installation & Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1️⃣ Clone the repository
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+     git clone https://github.com/aniket-gaur/Eco-Track
+     cd smart-waste-management
 
-## Learn More
+2️⃣ Install dependencies
 
-To learn more about Next.js, take a look at the following resources:
+    npm install
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3️⃣ Start the development server
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+    npm start
 
-## Deploy on Vercel
+📸 Screenshots
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# Eco-Track
+![image](https://github.com/user-attachments/assets/4466fee4-5e33-4680-bee4-4162f2111727)
+![image](https://github.com/user-attachments/assets/2fcf8876-0a8f-45bc-a687-b8596cc4dee5)
+![image](https://github.com/user-attachments/assets/9653fa34-1d6b-4df8-9393-9d40248a93b9)
+
+
+ 
+
+Contributions are welcome! Feel free to fork this repo, create a new branch, and submit a pull request.
+📞 Contact
+
+💡 Author: Aniket Gaur 
+📧 Email: aniketgaur350@gmail.com
+🔗 LinkedIn: https://www.linkedin.com/in/aniket-gaur/
+
