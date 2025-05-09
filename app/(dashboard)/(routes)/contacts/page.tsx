@@ -1,141 +1,121 @@
-"use client";
+'use client'
 
-import { useState } from "react";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Image from "next/image";
 import { Copy } from "lucide-react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useState, useEffect, useCallback } from "react";
+import { toast, ToastContainer } from "react-toastify";
 
-interface Authority {
+const ITEMS_PER_PAGE = 12;
+interface WardMember {
+    ward_number: string;
     name: string;
-    designation: string;
-    contact: string;
-    email: string;
-    city: string;
-    state: string;
-    pincode: string;
-    photo?: string;
+    relation: string;
+    address: string;
+    phone: string;
 }
 
-const authoritiesData: Authority[] = [
-    {
-        name: "Anruag Tripathi",
-        designation: "District Commissioner",
-        contact: "+91 9876543210",
-        email: "johndoe@gov.in",
-        city: "Lucknow",
-        state: "Uttar Pradesh",
-        pincode: "226022",
-        photo: "/images/john_doe.jpg"
-    },
-    {
-        name: "Arjun Maurya",
-        designation: "Municipal Officer",
-        contact: "+91 8765432109",
-        email: "janesmith@gov.in",
-        city: "Lucknow",
-        state: "Uttar Pradesh",
-        pincode: "226022",
-        photo: "/images/jane_smith.jpg"
-    },
-    {
-        name: "Raj Patel",
-        designation: "Police Commissioner",
-        contact: "+91 7654321098",
-        email: "rajpatel@gov.in",
-        city: "Mumbai",
-        state: "Maharashtra",
-        pincode: "400001",
-        photo: "/images/raj_patel.jpg"
-    },
-];
-
 const ContactPage = () => {
-    const [filteredAuthorities, setFilteredAuthorities] = useState<Authority[]>([]);
+    const [allMembers, setAllMembers] = useState<WardMember[]>([]);
+    const [filteredMembers, setFilteredMembers] = useState<WardMember[]>([]);
     const [search, setSearch] = useState("");
+    const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+
+    useEffect(() => {
+        fetch("/ward_members_full.json")
+            .then((res) => res.json())
+            .then((data) => {
+                setAllMembers(data);
+                setFilteredMembers(data);
+            })
+            .catch(() => setError("Failed to load data."));
+    }, []);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
+                setVisibleCount((prev) => Math.min(prev + ITEMS_PER_PAGE, filteredMembers.length));
+            }
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [filteredMembers]);
 
     const copyToClipboard = (text: string) => {
         navigator.clipboard.writeText(text);
         toast.success("Copied to clipboard!");
     };
 
-    const filterAuthorities = (pincode: string) => {
-        if (pincode.length !== 6 || isNaN(Number(pincode))) {
-            setError("Pincode must be exactly 6 digits.");
-            setFilteredAuthorities([]);
-            return;
-        }
-        setError("");
+    const filterMembers = useCallback((query: string) => {
         setLoading(true);
         setTimeout(() => {
-            const filtered = authoritiesData.filter(
-                (authority) => authority.pincode === pincode
-            );
-            setFilteredAuthorities(filtered);
+            const filtered = query.trim()
+                ? allMembers.filter((member) =>
+                    member.address.toLowerCase().includes(query.toLowerCase())
+                )
+                : allMembers;
+            setFilteredMembers(filtered);
+            setVisibleCount(ITEMS_PER_PAGE); // Reset visible count when new search is performed
             setLoading(false);
-        }, 500);
-    };
+        }, 300);
+    }, [allMembers]);
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         setSearch(value);
-        filterAuthorities(value);
+        filterMembers(value);
     };
 
     return (
-        <div className="min-h-screen bg-gray-100 flex flex-col items-center p-6 w-full">
+        <div className="min-h-screen  flex flex-col items-center p-6 w-full">
             <ToastContainer position="top-right" autoClose={3000} />
-            <h2 className="text-3xl font-semibold text-gray-800 mb-4 text-center">Contact Authorities</h2>
+            <h2 className="text-3xl font-semibold text-gray-200 mb-4 text-center">
+                Search Ward Members
+            </h2>
             <input
                 type="text"
-                placeholder="Search by pincode"
+                placeholder="Search by Ward Member OR Address"
                 value={search}
                 onChange={handleSearchChange}
-                className="mb-2 p-2 border border-gray-600 rounded-md w-full max-w-sm"
+                className="mb-4 p-2 border text-white border-white rounded-md w-full max-w-sm hover:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500 transition duration-200"
             />
             {error && <p className="text-red-500 mb-2 text-center">{error}</p>}
             {loading ? (
-                <p className="text-gray-600 text-center">Searching...</p>
-            ) : filteredAuthorities.length > 0 ? (
-                <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <h3 className="text-lg font-medium text-gray-700 mb-4 col-span-full text-center">
-                        Authorities for Pincode {search}
-                    </h3>
-                    {filteredAuthorities.map((authority, index) => (
-                        <Card key={index} className="shadow-md rounded-lg bg-gray-400/10 border-[#0c924f] overflow-hidden w-full transition-transform transform hover:scale-105 ">
+                <p className="text-white text-center">Searching...</p>
+            ) : filteredMembers.length > 0 ? (
+                <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {filteredMembers.slice(0, visibleCount).map((member, index) => (
+                        <Card
+                            key={index}
+                            className="bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg transition-shadow duration-300"
+                        >
                             <CardHeader className="flex flex-col items-center text-center p-4">
-                                <Image
-                                    src={authority.photo || "/images/default.jpg"}
-                                    alt={authority.name}
-                                    width={80}
-                                    height={80}
-                                    className="rounded-full"
-                                />
-                                <CardTitle className="text-xl font-semibold text-green-700 mt-1">{authority.name}</CardTitle>
+                                <CardTitle className="text-lg font-semibold text-green-700">
+                                    {member.name}
+                                </CardTitle>
                             </CardHeader>
-                            <CardContent className="text-gray-600 text-center p-1">
-                                <p className="text-black font-semibold">{authority.designation}</p>
-                                <div className="flex items-center justify-center space-x-2 p-1">
-                                    <p className="text-black">📞 {authority.contact}</p>
-                                    <button onClick={() => copyToClipboard(authority.contact)}>
-                                        <Copy className="w-4 h-4 text-gray-500 hover:text-gray-700" />
-                                    </button>
-                                </div>
+                            <CardContent className="text-gray-700 text-center space-y-1 px-4 pb-4">
+                                <p className="font-medium text-black">Ward #{member.ward_number}</p>
                                 <div className="flex items-center justify-center space-x-2">
-                                    <p className="text-blue-600">✉️ {authority.email}</p>
-                                    <button onClick={() => copyToClipboard(authority.email)}>
-                                        <Copy className="w-4 h-4 mx-2 text-gray-500 hover:text-gray-700" />
+                                    <p className="text-sm">📞 {member.phone}</p>
+                                    <button
+                                        onClick={() => copyToClipboard(member.phone)}
+                                        className="text-gray-500 hover:text-black"
+                                    >
+                                        <Copy className="w-4 h-4" />
                                     </button>
                                 </div>
+                                <p className="text-sm">{member.relation}</p>
+                                <p className="text-sm">{member.address}</p>
                             </CardContent>
                         </Card>
+
                     ))}
                 </div>
             ) : (
-                <p className="text-gray-600 text-center">No authorities found for this pincode.</p>
+                <p className="text-white text-center">No ward members found for this name!!!.</p>
             )}
         </div>
     );

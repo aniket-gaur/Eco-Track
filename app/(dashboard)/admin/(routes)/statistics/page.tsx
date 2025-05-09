@@ -7,13 +7,7 @@ import { useEffect, useState } from "react";
 import EcoTrackTable from "@/components/data-table";
 import { Bell } from "lucide-react";
 import { ResponsiveBar } from '@nivo/bar';
-
-const data = [
-    { bin: "Bin 1", fill: 20 },
-    { bin: "Bin 2", fill: 80 },
-    { bin: "Bin 3", fill: 50 },
-    { bin: "Bin 4", fill: 90 },
-];
+import AlertsTab from "@/components/alert_tab";
 
 export default function Dashboard() {
     const [ecoData, setEcoData] = useState([]);
@@ -45,10 +39,16 @@ export default function Dashboard() {
     const filteredData = filterEcoData(ecoData, filterStatus);
     const filteredAndSortedData = sortEcoData(filteredData, sortAsc);
 
+    // Transform ecoData for chart
+    const chartData = ecoData.map((item: any, index: number) => ({
+        bin: item["Bin ID"] || `Bin ${index + 1}`,
+        fill: parseFloat(item["Waste Level (%)"]) || 0,
+    }));
+
     return (
         <div className="p-6 space-y-6">
             <div className="flex justify-between items-center">
-                <h1 className="text-3xl font-bold text-white">Dashboard</h1>
+                <h1 className="text-3xl font-bold text-gray-300">Dashboard</h1>
                 <div className="flex items-center space-x-4">
                     <Button>Download Report</Button>
                 </div>
@@ -99,7 +99,7 @@ export default function Dashboard() {
                             <CardHeader><CardTitle>Bin Fill Level Overview</CardTitle></CardHeader>
                             <CardContent className="h-[300px]">
                                 <ResponsiveBar
-                                    data={data}
+                                    data={chartData}
                                     keys={["fill"]}
                                     indexBy="bin"
                                     margin={{ top: 20, right: 30, bottom: 50, left: 60 }}
@@ -149,18 +149,16 @@ export default function Dashboard() {
                     </div>
                 </TabsContent>
 
-                {/* Analytics Tab */}
                 <TabsContent value="analytics">
                     <div className="mt-6">
                         <h2 className="text-xl font-semibold mb-4 text-white">Daily Bin Data</h2>
 
                         <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
-                            {/* Filter */}
                             <div className="flex items-center space-x-2">
                                 <label htmlFor="statusFilter" className="text-white">Filter by Status:</label>
                                 <select
                                     id="statusFilter"
-                                    className="px-2 py-1 rounded-md border text-white bg-gray-800 border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="px-3 py-2 rounded-md bg-gray-900 text-gray-100 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
                                     value={filterStatus}
                                     onChange={(e) => setFilterStatus(e.target.value)}
                                 >
@@ -168,9 +166,9 @@ export default function Dashboard() {
                                     <option value="Collected">Collected</option>
                                     <option value="Not Collected">Not Collected</option>
                                 </select>
+
                             </div>
 
-                            {/* Sort */}
                             <Button onClick={() => setSortAsc(prev => !prev)}>
                                 Sort by Waste Level {sortAsc ? "↑" : "↓"}
                             </Button>
@@ -179,6 +177,8 @@ export default function Dashboard() {
                         <EcoTrackTable data={filteredAndSortedData} />
                     </div>
                 </TabsContent>
+
+                <AlertsTab />
             </Tabs>
         </div>
     );

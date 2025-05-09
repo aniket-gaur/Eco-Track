@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function HeroSection() {
     const [titleNumber, setTitleNumber] = useState(0);
-    const titles = useMemo(() => ["amazing", "new", "wonderful", "efficient", "smart"], []);
+    const titles = useMemo(() => ["Future", "Awareness", "Sustainability", "Responsibility",], []);
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
@@ -31,7 +31,7 @@ export default function HeroSection() {
                         </div>
                         <div className="flex gap-4 flex-col">
                             <h1 className="text-5xl md:text-7xl max-w-2xl tracking-tighter text-center font-regular">
-                                <span className="text-spektr-cyan-50">This is something</span>
+                                <span className="text-spektr-cyan-50">Track Your Impact Shape Your</span>
                                 <span className="relative flex w-full justify-center overflow-hidden text-center md:pb-4 md:pt-1">
                                     &nbsp;
                                     {titles.map((title, index) => (

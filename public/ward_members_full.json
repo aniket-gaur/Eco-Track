@@ -1,0 +1,142 @@
+[
+    {
+        "ward_number": "01",
+        "name": "Chandrakanti Devi",
+        "relation": "Dashrath Prasad",
+        "address": "Goluipara, Khauli, Lucknow",
+        "phone": "8318976297"
+    },
+    {
+        "ward_number": "02",
+        "name": "Usha Devi",
+        "relation": "Munesh Kumar",
+        "address": "Lakkha Khera, Delhi West, Lucknow",
+        "phone": "9648965050"
+    },
+    {
+        "ward_number": "03",
+        "name": "Laxmi Devi",
+        "relation": "Sunil Kumar",
+        "address": "Sector 16B/352, Vikas Khand, Lucknow",
+        "phone": "9415438251"
+    },
+    {
+        "ward_number": "04",
+        "name": "Chhotelal Sharma",
+        "relation": "Rama Shankar Sharma",
+        "address": "6/306, 307, Sitapur Road, Jankipuram Scheme, Lucknow",
+        "phone": "9452095512"
+    },
+    {
+        "ward_number": "05",
+        "name": "Priyanka Yadav",
+        "relation": "Yogesh Yadav",
+        "address": "Mehndiganj, Faizullaganj, Lucknow",
+        "phone": "9936563617"
+    },
+    {
+        "ward_number": "06",
+        "name": "Suman Kanojia",
+        "relation": "Jagannath Kanojia",
+        "address": "13B, Railway Colony, Cantonment, Lucknow",
+        "phone": "9839274700"
+    },
+    {
+        "ward_number": "07",
+        "name": "Suresh Kumar",
+        "relation": "Om Prakash Kumar",
+        "address": "Village Gahru Nagar, Bakshi Ka Talab, Lucknow",
+        "phone": "6393535456"
+    },
+    {
+        "ward_number": "08",
+        "name": "Shikha Pandey",
+        "relation": "Shiv Kumar",
+        "address": "383/92, Rajajipuram, Alambagh, Lucknow",
+        "phone": "8601034999"
+    },
+    {
+        "ward_number": "09",
+        "name": "Kalyan Singh",
+        "relation": "Lalu Singh",
+        "address": "599PLC/734, Ganga Vihar, Faizabad Road, Lucknow",
+        "phone": "7905827080"
+    },
+    {
+        "ward_number": "10",
+        "name": "Geeta Devi",
+        "relation": "Shiv Kumar Gupta",
+        "address": "32, Rajajipuram, Lucknow",
+        "phone": "9235505152"
+    },
+    {
+        "ward_number": "11",
+        "name": "Meena Yadav",
+        "relation": "Kailash Yadav",
+        "address": "XK Block, Indira Nagar, Lucknow",
+        "phone": "9956165000"
+    },
+    {
+        "ward_number": "12",
+        "name": "Rakesh Kumar",
+        "relation": "Sohan Lal",
+        "address": "Ehsan Nagar, Gomti Nagar Extension, Lucknow",
+        "phone": "9335101801"
+    },
+    {
+        "ward_number": "13",
+        "name": "Anil Kumar",
+        "relation": "Ajay Kumar",
+        "address": "636/255, Aliganj, Lucknow",
+        "phone": "7275221000"
+    },
+    {
+        "ward_number": "14",
+        "name": "Sunita Devi",
+        "relation": "Ganesh Prasad",
+        "address": "Village Unnaipura, Chinhat, Lucknow",
+        "phone": "9455275252"
+    },
+    {
+        "ward_number": "15",
+        "name": "Surendra Pandey",
+        "relation": "Kiran Shankar Pandey",
+        "address": "A-86, Yodhakunj Nagar, Lucknow",
+        "phone": "7080805090"
+    },
+    {
+        "ward_number": "16",
+        "name": "Shyam Lal",
+        "relation": "Babulal",
+        "address": "QSTYYKXAT, NKMN Nagar, Lucknow",
+        "phone": "8400133703"
+    },
+    {
+        "ward_number": "17",
+        "name": "Vikram Singh",
+        "relation": "Dayal Singh",
+        "address": "14/121, Purana Bazaar, Manaknagar, Lucknow",
+        "phone": "9839286358"
+    },
+    {
+        "ward_number": "18",
+        "name": "Ramesh Kumar",
+        "relation": "Yashpal Singh",
+        "address": "Riksou Nagar, Civil Lines, Lucknow",
+        "phone": "9956110798"
+    },
+    {
+        "ward_number": "19",
+        "name": "Ganga Ram",
+        "relation": "Ramji Das",
+        "address": "S&S-929, Sector 3, Gomti Nagar, Lucknow",
+        "phone": "7388130741"
+    },
+    {
+        "ward_number": "20",
+        "name": "Fouzan Kanojia",
+        "relation": "Jai Kishor",
+        "address": "Umu Khera, Standard Nagar, Lucknow",
+        "phone": "7905459510"
+    }
+]

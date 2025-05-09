@@ -15,8 +15,8 @@ export default async function Sidebar() {
             {/* Navigation */}
             <nav className="space-y-2 flex-1 ">
                 <NavItem href="/dashboard" icon={<User size={18} />} text="Profile" />
-                <NavItem href="/complaint" icon={<Inbox size={18} />} text="Complaints" />
-                <NavItem href="/bills" icon={<CreditCard size={18} />} text="Billings" />
+                <NavItem href="/complaint" icon={<Inbox size={18} />} text="File Complaints" />
+                <NavItem href="/bills" icon={<CreditCard size={18} />} text="Bills" />
                 <NavItem href="/contacts" icon={<Contact size={18} />} text="Contact" />
 
 

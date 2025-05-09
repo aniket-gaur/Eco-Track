@@ -72,92 +72,98 @@ export default function AddressUpdater() {
   };
 
   return (
-    <div className="bg-white p-6 max-h-screen shadow-md rounded-md border border-green-300 max-w-lg mx-auto">
-      <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
-
-      <h2 className="text-xl font-bold text-green-700 mb-4">Address Form</h2>
-      {isEditing ? (
-        <div className="space-y-4">
-          <div>
-            <label className="block font-medium text-green-700">
-              House No:
-            </label>
-            <input
-              type="text"
-              name="house"
-              value={formData.house}
-              onChange={handleChange}
-              className="border border-green-400 p-2 rounded-md w-full"
-            />
-          </div>
-          <div>
-            <label className="block font-medium text-green-700">Country:</label>
-            <input
-              type="text"
-              name="country"
-              value={formData.country}
-              onChange={handleChange}
-              className="border border-green-400 p-2 rounded-md w-full"
-            />
-          </div>
-          <div className="grid grid-cols-2 gap-4">
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="bg-white p-8 shadow-md rounded-md border border-green-300 w-full max-w-2xl min-h-[200px]">
+        {" "}
+        <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
+        <h2 className="text-xl font-bold text-green-700 mb-4">Address Form</h2>
+        {isEditing ? (
+          <div className="space-y-4">
             <div>
-              <label className="block font-medium text-green-700">City:</label>
+              <label className="block font-medium text-green-700">
+                House No:
+              </label>
               <input
                 type="text"
-                name="city"
-                value={formData.city}
+                name="house"
+                value={formData.house}
                 onChange={handleChange}
                 className="border border-green-400 p-2 rounded-md w-full"
               />
             </div>
             <div>
               <label className="block font-medium text-green-700">
-                Pincode:
+                Country:
               </label>
               <input
                 type="text"
-                name="pincode"
-                value={formData.pincode}
+                name="country"
+                value={formData.country}
                 onChange={handleChange}
                 className="border border-green-400 p-2 rounded-md w-full"
               />
             </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block font-medium text-green-700">
+                  City:
+                </label>
+                <input
+                  type="text"
+                  name="city"
+                  value={formData.city}
+                  onChange={handleChange}
+                  className="border border-green-400 p-2 rounded-md w-full"
+                />
+              </div>
+              <div>
+                <label className="block font-medium text-green-700">
+                  Pincode:
+                </label>
+                <input
+                  type="text"
+                  name="pincode"
+                  value={formData.pincode}
+                  onChange={handleChange}
+                  className="border border-green-400 p-2 rounded-md w-full"
+                />
+              </div>
+            </div>
+            <button
+              onClick={handleUpdate}
+              className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 rounded-md mt-2"
+              disabled={loading}
+            >
+              {loading ? "Saving..." : "Save Address"}
+            </button>
           </div>
-          <button
-            onClick={handleUpdate}
-            className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 rounded-md mt-2"
-            disabled={loading}
-          >
-            {loading ? "Saving..." : "Save Address"}
-          </button>
-        </div>
-      ) : (
-        <div className="space-y-2">
-          <p>
-            <strong className="text-green-700">House No:</strong>{" "}
-            {address.house || "N/A"}
-          </p>
-          <p>
-            <strong className="text-green-700">Country:</strong>{" "}
-            {address.country || "N/A"}
-          </p>
-          <p>
-            <strong className="text-green-700">City:</strong>{" "}
-            {address.city || "N/A"}
-          </p>
-          <p>
-            <strong className="text-green-700">Pincode:</strong>{" "}
-            {address.pincode || "N/A"}
-          </p>
-          <button
-            onClick={() => setIsEditing(true)}
-            className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 rounded-md mt-2"
-          >
-            ✏️ Edit Address
-          </button>
-        </div>
-      )}
+        ) : (
+          <div className="space-y-2">
+            <p>
+              <strong className="text-green-700">House No:</strong>{" "}
+              {address.house || "N/A"}
+            </p>
+            <p>
+              <strong className="text-green-700">Country:</strong>{" "}
+              {address.country || "N/A"}
+            </p>
+            <p>
+              <strong className="text-green-700">City:</strong>{" "}
+              {address.city || "N/A"}
+            </p>
+            <p>
+              <strong className="text-green-700">Pincode:</strong>{" "}
+              {address.pincode || "N/A"}
+            </p>
+            <button
+              onClick={() => setIsEditing(true)}
+              className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 rounded-md mt-2"
+            >
+              ✏️ Edit Address
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
